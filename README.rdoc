@@ -2,13 +2,18 @@
 
 A Rails gem to conveniently manage multiple nested models in a single form. It does so in an unobtrusive way through jQuery.
 
-To learn more about how this works under the hood: http://blog.madebydna.com/dynamic-nested-forms-in-rails-3-with-the-nest
+This has been updated. To learn more about how originally worked under the hood: http://blog.madebydna.com/dynamic-nested-forms-in-rails-3-with-the-nest
+
+I have modified this to allow the use of nested_form as a table view. This has changed the the underlying implementation by:
+
+* storing the blueprint template for add more in a hidden textarea, instead of a div. to maintain artibrary html snippet without getting affected with DOM rendering (like Javascript Templates). this is convinient for storing a <tr> base tempalate.
+* The container <div class="fields"> is no longer automatically generated. you are assumed to generate your own entry container with that proper class "fields". as show in the updated *usage* section below.
 
 == Install
 
 Add it to your Gemfile
   
-  gem "nested_form", :git => "git://github.com/madebydna/nested_form.git"
+  gem "nested_form", :git => "git://github.com/modsaid/nested_form.git"
 
 Run
   
@@ -29,12 +34,17 @@ You can then generate a nested form using the nested_form_for helper method.
   <%= nested_form_for @project do |f| %>
 
 Use this form just like normal, including the fields_for helper method for nesting models. The benefit of this plugin comes from the link_to_add and link_to_remove helper methods on the form builder.
-
+  <table>
   <%= f.fields_for :tasks do |task_form| %>
-    <%= task_form.text_field :name %>
-    <%= task_form.link_to_remove "Remove this task" %>
+    <tr class="fields">
+      <td><%= task_form.text_field :name %></td>
+      <td><%= task_form.link_to_remove "Remove this task" %></td>
+    <tr>
   <% end %>
-  <%= f.link_to_add "Add a task", :tasks %>
+    <tr>
+      <td><%= f.link_to_add "Add a task", :tasks %></td>
+    </tr>
+  </table>
 
 This generates links which dynamically add and remove fields.
 
