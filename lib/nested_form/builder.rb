@@ -29,7 +29,7 @@ module NestedForm
 #      output << super
 #      output.safe_concat('</div>')
 #      output
-      super
+      super.html_safe
     end
   end
 end
