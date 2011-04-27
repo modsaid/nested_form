@@ -3,11 +3,11 @@ $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 require 'nested_form/version'
 
 Gem::Specification.new do |s|
-  s.name        = "nested_form"
+  s.name        = "flexible-nested-form"
   s.version     = NestedForm::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Ryan Bates", "Andrea Singh"]
-  s.email       = ["info@madebydna.com"]
+  s.authors     = ["modsaid","Ryan Bates", "Andrea Singh"]
+  s.email       = ["mahmoud@modsaid.com","info@madebydna.com"]
   s.homepage    = "http://github.com/madebydna/nested_form"
   s.summary     = "Gem to conveniently handle multiple models in a single form."
   s.description = "Gem to conveniently handle multiple models in a single form. Rails 2 plugin by Ryan Bates converted into a gem."
